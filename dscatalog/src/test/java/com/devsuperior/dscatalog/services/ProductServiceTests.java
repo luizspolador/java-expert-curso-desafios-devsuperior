@@ -70,7 +70,7 @@ public class ProductServiceTests {
 		
 		Pageable pageable = PageRequest.of(0, 12);
 		
-		Page<ProductDTO> result = service.findAll(pageable);
+		Page<ProductDTO> result = service.findAllPaged(pageable);
 		
 		Assertions.assertNotNull(result);
 		
