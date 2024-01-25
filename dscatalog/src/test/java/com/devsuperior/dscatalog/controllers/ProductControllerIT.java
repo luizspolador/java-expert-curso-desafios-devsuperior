@@ -1,4 +1,4 @@
-package com.devsuperior.dscatalog.resources;
+package com.devsuperior.dscatalog.controllers;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -23,7 +23,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @SpringBootTest
 @AutoConfigureMockMvc
 @Transactional
-public class ProductResourceIT {
+public class ProductControllerIT {
 
 	@Autowired
 	private MockMvc mockMvc;
