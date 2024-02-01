@@ -3,6 +3,7 @@ package com.devsuperior.dscommerce.services;
 import com.devsuperior.dscommerce.dto.CategoryDTO;
 import com.devsuperior.dscommerce.entities.Category;
 import com.devsuperior.dscommerce.repositories.CategoryRepository;
+import com.devsuperior.dscommerce.services.exceptions.ResourceNotFoundException;
 import com.devsuperior.dscommerce.tests.CategoryFactory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,6 +36,7 @@ public class CategoryServiceTests {
         list.add(category);
 
         Mockito.when(repository.findAll()).thenReturn(list);
+
     }
 
     @Test
