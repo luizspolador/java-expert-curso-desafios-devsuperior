@@ -12,3 +12,5 @@ Posteriormente foram realizados os testes automatizados utilizando JUnit e Mocki
 - Todos os endpoints foram testados via postman durante o desenvolvimento da API.
 
 Foi implementado caso de uso signup, fluxo de e-mail com SMTP do Gmail e de recuperação de senha, assim como a obtenção de usuário logado.
+
+Foram realizados testes automatizados com JaCoCo no projeto DSCommerce para validação de cobertura.
