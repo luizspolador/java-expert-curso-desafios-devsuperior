@@ -7,6 +7,7 @@ import com.devsuperior.movieflix.entities.User;
 import com.devsuperior.movieflix.repositories.MovieRepository;
 import com.devsuperior.movieflix.repositories.ReviewRepository;
 import com.devsuperior.movieflix.repositories.UserRepository;
+import com.devsuperior.movieflix.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,17 +25,24 @@ public class ReviewService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private AuthService authService;
+
     //DUVIDA ESTA AQUI
     @Transactional
     public ReviewDTO insert(ReviewDTO dto) {
-        Review entity = new Review();
-        entity.setText(dto.getText());
-        entity.setMovie(movieRepository.getReferenceById(dto.getMovieId()));
-        entity.setUser(userRepository.getReferenceById(dto.getUserId()));
-        entity.setUser(userRepository.findByEmail(dto.getUserEmail()));
+        User user = authService.authenticated();
+        try {
+            Review entity = new Review();
+            entity.setMovie(movieRepository.getReferenceById(dto.getMovieId()));
+            entity.setUser(user);
+            entity.setText(dto.getText());
 
-        entity = repository.save(entity);
-        return new ReviewDTO(entity);
+            repository.save(entity);
+            return new ReviewDTO(entity);
+        } catch (EntityNotFoundException e){
+            throw new ResourceNotFoundException("Id not found " + dto.getMovieId());
+        }
     }
 
 }
