@@ -6,6 +6,13 @@ import com.devsuperior.dsmovie.entities.UserEntity;
 import java.time.LocalDate;
 
 public class UserFactory {
+
+	public static UserEntity createUserEntity() {
+		UserEntity user = new UserEntity(2L, "Maria", "maria@gmail.com", "$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG");
+		return user;
+	}
+
+	//TREINANDO...
 	
 	public static UserEntity createClientUserEntity() {
 		UserEntity user = new UserEntity(1L, "Alex", "alex@gmail.com", "$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG");

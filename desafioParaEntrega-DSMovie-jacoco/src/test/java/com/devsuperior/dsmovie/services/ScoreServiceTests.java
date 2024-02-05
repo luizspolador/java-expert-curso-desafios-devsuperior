@@ -17,40 +17,64 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Optional;
 
-import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
 public class ScoreServiceTests {
-	
+
 	@InjectMocks
 	private ScoreService service;
 
 	@Mock
-	private MovieRepository movieRepository;
+	private UserService userService;
 
 	@Mock
 	private ScoreRepository scoreRepository;
 
 	@Mock
-	private UserService userService;
+	private MovieRepository movieRepository;
+
+	private Long existingMovieId, nonExistingMovieId;
+	private UserEntity user;
+	private MovieEntity movie;
+	private ScoreEntity score;
 
 	@BeforeEach
-	void setUp() throws Exception{
+	void setUp() throws Exception {
+		existingMovieId = 1L;
+		nonExistingMovieId = 2L;
+		score = ScoreFactory.createScoreEntity();
+		movie = MovieFactory.createMovieEntity();
+		movie.getScores().add(score);
+		user = UserFactory.createUserEntity();
 
+		when(userService.authenticated()).thenReturn(user);
+
+		when(movieRepository.findById(existingMovieId)).thenReturn(Optional.of(movie));
+		when(movieRepository.findById(nonExistingMovieId)).thenReturn(Optional.empty());
+
+		when(scoreRepository.saveAndFlush(any())).thenReturn(score);
+		when(movieRepository.save(any())).thenReturn(movie);
 	}
-	
+
 	@Test
 	public void saveScoreShouldReturnMovieDTO() {
+		ScoreDTO scoreDTO = new ScoreDTO(score);
 
+		MovieDTO result = service.saveScore(scoreDTO);
+		Assertions.assertNotNull(result);
 	}
-	
+
 	@Test
 	public void saveScoreShouldThrowResourceNotFoundExceptionWhenNonExistingMovieId() {
 
+		Assertions.assertThrows(ResourceNotFoundException.class, () -> {
+			service.saveScore(new ScoreDTO(nonExistingMovieId, score.getValue()));
+		});
 	}
 }
