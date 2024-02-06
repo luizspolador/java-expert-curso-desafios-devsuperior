@@ -17,4 +17,6 @@ Foi implementado caso de uso signup, fluxo de e-mail com SMTP do Gmail e de recu
 Foram realizados testes automatizados com JUnit e Mockito com JaCoCo no projeto <b>DSCommerce</b> para validação de cobertura. 
 - Camadas testadas: <b>Authservice, CategoryService, ProductService, UserService, OrderService.</b>
 
+Foram realizados testes de API com MockMvc e RestAssured.
+
 Foram feitos desafios práticos referente ao conteúdo do curso. Todos os desafios passam pela avaliação e aprovação dos instrutores para a obtenção do certificado.
