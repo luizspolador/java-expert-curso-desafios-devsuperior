@@ -23,3 +23,5 @@ Foram realizados testes de API com MockMvc e RestAssured.
 - dsmovie-projeto-base: porta 8080
 
 Foram feitos desafios práticos referente ao conteúdo do curso. Todos os desafios passam pela avaliação e aprovação dos instrutores para a obtenção do certificado.
+
+Os arquivos dos desafios não estão presentes por questões de direitos autorais.
