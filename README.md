@@ -18,5 +18,8 @@ Foram realizados testes automatizados com JUnit e Mockito com JaCoCo no projeto 
 - Camadas testadas: <b>Authservice, CategoryService, ProductService, UserService, OrderService.</b>
 
 Foram realizados testes de API com MockMvc e RestAssured.
+- <b>Observação:</b> para executar os testes do projeto desafioParaEntrega-dsmovie-restassured, é necessário executar o projeto dsmovie-projeto-base.
+- desafioParaEntrega-dsmovie-restassured: porta 8081
+- dsmovie-projeto-base: porta 8080
 
 Foram feitos desafios práticos referente ao conteúdo do curso. Todos os desafios passam pela avaliação e aprovação dos instrutores para a obtenção do certificado.
